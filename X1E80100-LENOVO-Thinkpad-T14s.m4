@@ -45,7 +45,7 @@ dnl	interface-type, interface-index, data-format,
 dnl	sg-iid-start, cont-iid-start, mod-iid-start
 dnl WSA Playback
 DEVICE_SG_ADD(audioreach/subgraph-device-codec-dma-playback.m4, `WSA_CODEC_DMA_RX_0', WSA_CODEC_DMA_RX_0,
-	`S16_LE', 48000, 48000, 2, 4,
+	`S16_LE', 48000, 48000, 2, 2,
 	LPAIF_INTF_TYPE_WSA, CODEC_INTF_IDX_RX0, 0, DATA_FORMAT_FIXED_POINT,
 	0x00004005, 0x00004005, 0x00006050)
 dnl
