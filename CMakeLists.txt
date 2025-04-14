@@ -22,6 +22,7 @@ set(TPLGS
 	"X1E80100-LENOVO-Thinkpad-T14s\;X1E80100-LENOVO-ThinkBook-16\;qcom/x1e80100/LENOVO/21NH\;"
 	"X1E80100-LENOVO-Thinkpad-T14s\;X1E80100-TUXEDO-Elite-14\;qcom/x1e80100\;"
 	"X1E80100-LENOVO-Yoga-Slim7x\;X1E80100-LENOVO-Yoga-Slim7x\;qcom/x1e80100/LENOVO/83ED\;"
+	"X1E80100-Romulus\;X1E80100-Romulus\;qcom/x1e80100\;"
 )
 
 add_custom_target(topologies ALL)
