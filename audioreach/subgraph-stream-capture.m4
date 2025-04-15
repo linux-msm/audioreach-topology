@@ -12,7 +12,7 @@ include(`audioreach/module_log.m4') dnl
 include(`util/mixer.m4') dnl
 dnl
 # SubGraph  for PCM Capture
-# 
+#
 #  ______________________________________________
 # |               Sub Graph 1                    |
 # | [RD_SH]<-- [PCM ENC] <--[PCM CONV] <--[LOG]  |-[DAPM - MIXER]
@@ -71,4 +71,4 @@ AR_MODULE_PCMCNV(MOD_INDEX, SG_INDEX, CONTAINER_INDEX, PCMCNV_MODULE_IID, 1, 1, 
 AR_MODULE_PCMENC(MOD_INDEX, SG_INDEX, CONTAINER_INDEX, PCMENC_MODULE_IID, 1, 1, 2, 1, 1, 2, PCM_INTERLEAVED, RDSH_MODULE_IID)
 AR_MODULE_RDSH(MOD_INDEX,   SG_INDEX, CONTAINER_INDEX, RDSH_MODULE_IID,   1, 0, 2, 0, 1, 0, PCM_DAI_ID, NONE_IID)
 
-STREAM_CAPTURE_ROUTE(MOD_INDEX, PCM_DAI_ID) 
+STREAM_CAPTURE_ROUTE(MOD_INDEX, PCM_DAI_ID)
