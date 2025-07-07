@@ -25,6 +25,7 @@ set(TPLGS
 	"X1E80100-LENOVO-Thinkpad-T14s\;X1E80100-TUXEDO-Elite-14\;qcom/x1e80100\;"
 	"X1E80100-LENOVO-Thinkpad-T14s\;X1E80100-Romulus\;qcom/x1e80100\;"
 	"X1E80100-LENOVO-Yoga-Slim7x\;X1E80100-LENOVO-Yoga-Slim7x\;qcom/x1e80100/LENOVO/83ED\;"
+	"QCS9075-IQ-EVK\;qcs9075-iq-evk-snd-card\;qcom/qcs9075/qcs9075-iq-evk\;"
 )
 
 add_custom_target(topologies ALL)
