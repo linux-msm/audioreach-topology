@@ -57,6 +57,8 @@ define(`LPAIF_INTF_TYPE_RXTX', `1') dnl
 define(`LPAIF_INTF_TYPE_WSA',`2') dnl
 define(`LPAIF_INTF_TYPE_VA', `3') dnl
 define(`LPAIF_INTF_TYPE_AXI', `4') dnl
+define(`LPAIF_INTF_TYPE_AUD', `5') dnl
+define(`LPAIF_INTF_TYPE_SDR', `6') dnl
 define(`I2S_INTF_TYPE_PRIMARY', `0') dnl
 define(`I2S_INTF_TYPE_SECONDARY', `1') dnl
 define(`I2S_INTF_TYPE_TERTIARY', `2') dnl
