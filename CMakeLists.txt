@@ -36,7 +36,29 @@ set(TPLGS
 	"QCS6490-RB3Gen2\;QCS6490-RB3Gen2\;qcom/qcs6490\;"
   )
 
+# The list of directories to skip when synchronizing to linux-firmware
+set(SKIPSYNC
+	# These targets don't use AudioReach by default
+	"qcom/sc7180"
+	"qcom/sm8250"
+	# Not yet in linux-firmware
+	"qcom/qcm6490"
+	"qcom/qcs6490/radxa/dragon-q6a"
+	"qcom/sm8450"
+	"qcom/sm8750"
+	"qcom/x1e80100/ASUSTeK/vivobook-s15"
+	"qcom/x1e80100/ASUSTeK/zenbook-a14"
+	"qcom/x1e80100/LENOVO/21NH"
+	"qcom/x1e80100/dell/inspiron-14-plus-7441"
+	"qcom/x1e80100/dell/latitude-7455"
+	"qcom/x1e80100/dell/xps13-9345"
+	"qcom/x1e80100/hp/omnibook-x14"
+	"qcom/x1e80100"
+)
+
 add_custom_target(topologies ALL)
+
+set(SYNCFW FALSE CACHE BOOL "Sync only firmware expected in linux-firmware")
 
 foreach(tplg ${TPLGS})
 	list(GET tplg 0 input)
@@ -64,4 +86,8 @@ foreach(tplg ${TPLGS})
 
 	add_custom_target(topology_${output} DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/${outputdir}/${output}-tplg.bin)
 	add_dependencies(topologies topology_${output})
+
+	if (NOT ${SYNCFW} OR NOT "${outputdir}" IN_LIST SKIPSYNC)
+		install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${outputdir}/${output}-tplg.bin DESTINATION $ENV{FW_LOCATION}/${outputdir})
+	endif()
 endforeach()
