@@ -55,13 +55,13 @@ foreach(tplg ${TPLGS})
 		USES_TERMINAL
 	)
 	add_custom_command(
-		OUTPUT  ${CMAKE_CURRENT_BINARY_DIR}/${output}-tplg.bin
+		OUTPUT  ${CMAKE_CURRENT_BINARY_DIR}/${outputdir}/${output}-tplg.bin
 		COMMAND alsatplg -c ${CMAKE_CURRENT_BINARY_DIR}/${outputdir}/${output}.conf -o ${CMAKE_CURRENT_BINARY_DIR}/${outputdir}/${output}-tplg.bin
 		DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/${outputdir}/${output}.conf
 		VERBATIM
 		USES_TERMINAL
 	)
 
-	add_custom_target(topology_${output} DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/${output}-tplg.bin)
-        add_dependencies(topologies topology_${output})
+	add_custom_target(topology_${output} DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/${outputdir}/${output}-tplg.bin)
+	add_dependencies(topologies topology_${output})
 endforeach()
