@@ -20,7 +20,7 @@ set(TPLGS
 	"X1E80100-CRD\;X1E80100-CRD\;qcom/x1e80100\;"
 	"X1E80100-CRD\;X1E80100-EVK\;qcom/x1e80100\;"
 	"X1E80100-CRD\;X1E001DE-DEVKIT\;qcom/x1e80100\;"
-	"X1E80100-CRD\;X1E80100-TUXEDO-Elite-14\;qcom/x1e80100\;"
+	"X1E80100-TUXEDO-Elite-14\;X1E80100-TUXEDO-Elite-14\;qcom/x1e80100\;"
 	"X1E80100-Dell-Latitude-7455\;X1E80100-Dell-Inspiron-14p-7441\;qcom/x1e80100/dell/inspiron-14-plus-7441\;"
 	"X1E80100-Dell-Latitude-7455\;X1E80100-Dell-Latitude-7455\;qcom/x1e80100/dell/latitude-7455\;"
 	"X1E80100-Dell-XPS-13-9345\;X1E80100-Dell-XPS-13-9345\;qcom/x1e80100/dell/xps13-9345\;"
