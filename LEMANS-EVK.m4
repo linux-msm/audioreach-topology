@@ -40,7 +40,7 @@ dnl	sg-iid-start, cont-iid-start, mod-iid-start
 dnl Primary MI2S Playback
 DEVICE_SG_ADD(audioreach/subgraph-device-i2s-playback.m4, `Primary', PRIMARY_MI2S_RX,
 	`S16_LE', 48000, 48000, 2, 2,
-	LPAIF_INTF_TYPE_SDR, I2S_INTF_TYPE_PRIMARY, SD_LINE_IDX_I2S_SD1, DATA_FORMAT_FIXED_POINT,
+	LPAIF_INTF_TYPE_SDR, I2S_INTF_TYPE_PRIMARY, SD_LINE_IDX_I2S_SD0, DATA_FORMAT_FIXED_POINT,
 	0x00004006, 0x00004006, 0x00006060, `PRIMARY_MI2S_RX')
 dnl
 dnl Tertiary MI2S Capture
