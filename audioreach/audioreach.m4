@@ -257,6 +257,16 @@ define(`DISPLAY_PORT_RX_4', `132') dnl
 define(`DISPLAY_PORT_RX_5', `133') dnl
 define(`DISPLAY_PORT_RX_6', `134') dnl
 define(`DISPLAY_PORT_RX_7', `135') dnl
+define(`LPI_MI2S_RX_0', `137') dnl
+define(`LPI_MI2S_TX_0', `138') dnl
+define(`LPI_MI2S_RX_1', `139') dnl
+define(`LPI_MI2S_TX_1', `140') dnl
+define(`LPI_MI2S_RX_2', `141') dnl
+define(`LPI_MI2S_TX_2', `142') dnl
+define(`LPI_MI2S_RX_3', `143') dnl
+define(`LPI_MI2S_TX_3', `144') dnl
+define(`LPI_MI2S_RX_4', `145') dnl
+define(`LPI_MI2S_TX_4', `146') dnl
 define(`SND_SOC_AR_TPLG_FE_BE_GRAPH_CTL_MIX', `256') dnl
 define(`SND_SOC_AR_TPLG_VOL_CTL', `257') dnl
 define(`NONE_IID', `0x0') dnl
