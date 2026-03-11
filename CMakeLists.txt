@@ -20,6 +20,7 @@ set(TPLGS
 	"Google-SC7180-WSA-Speakers-SEC-I2S-VA-DMIC-WCD-TX3\;Google-SC7180-WSA-Speakers-SEC-I2S-VA-DMIC-WCD-TX3\;qcom/sc7180\;"
 	"X1E80100-CRD\;X1E80100-CRD\;qcom/x1e80100\;"
 	"X1E80100-CRD\;X1E80100-EVK\;qcom/x1e80100\;"
+	"GLYMUR-CRD\;GLYMUR-CRD\;qcom/glymur\;"
 	"X1E80100-CRD\;X1E001DE-DEVKIT\;qcom/x1e80100\;"
 	"X1E80100-CRD\;X1E80100-TUXEDO-Elite-14\;qcom/x1e80100\;"
 	"X1E80100-Dell-Latitude-7455\;X1E80100-Dell-Inspiron-14p-7441\;qcom/x1e80100/dell/inspiron-14-plus-7441\;"
