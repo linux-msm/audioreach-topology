@@ -24,6 +24,11 @@ STREAM_SG_PCM_ADD(audioreach/subgraph-stream-capture.m4, FRONTEND_DAI_MULTIMEDIA
         `S16_LE', 48000, 48000, 1, 2,
         0x00004003, 0x00004003, 0x00006020,  `110000')
 dnl
+dnl Playback MultiMedia3 (Compress Offload)
+STREAM_SG_PCM_ADD(audioreach/subgraph-compress-stream-vol-playback.m4, FRONTEND_DAI_MULTIMEDIA3,
+`S16_LE', 48000, 48000, 2, 2,
+0x00004002, 0x00004002, 0x00006010, `110000', `true')
+dnl
 #
 #
 # Device SubGraph  for WSA RX0 Backend
@@ -49,8 +54,8 @@ DEVICE_SG_ADD(audioreach/subgraph-device-i2s-capture.m4, `Tertiary', TERTIARY_MI
         LPAIF_INTF_TYPE_SDR, I2S_INTF_TYPE_TERTIARY, SD_LINE_IDX_I2S_SD0, DATA_FORMAT_FIXED_POINT,
         0x00004008, 0x00004008, 0x00006080, `TERTIARY_MI2S_TX', `TERTIARY_MI2S_TX')
 
-STREAM_DEVICE_PLAYBACK_MIXER(PRIMARY_MI2S_RX, ``PRIMARY_MI2S_RX'', ``MultiMedia1'')
-STREAM_DEVICE_PLAYBACK_ROUTE(PRIMARY_MI2S_RX, ``PRIMARY_MI2S_RX Audio Mixer'', ``MultiMedia1, stream0.logger1'')
+STREAM_DEVICE_PLAYBACK_MIXER(PRIMARY_MI2S_RX, ``PRIMARY_MI2S_RX'', ``MultiMedia1'', ``MultiMedia3'')
+STREAM_DEVICE_PLAYBACK_ROUTE(PRIMARY_MI2S_RX, ``PRIMARY_MI2S_RX Audio Mixer'', ``MultiMedia1, stream0.logger1'', ``MultiMedia3, stream2.logger1'')
 
 dnl STREAM_DEVICE_CAPTURE_MIXER(stream-index, kcontro1, kcontrol2... kcontrolN)
 STREAM_DEVICE_CAPTURE_MIXER(FRONTEND_DAI_MULTIMEDIA2, ``TERTIARY_MI2S_TX'')
