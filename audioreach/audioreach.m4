@@ -63,6 +63,8 @@ define(`LPAIF_INTF_TYPE_WSA2', `7') dnl
 define(`LPAIF_INTF_TYPE_RXTX_SDCA', `8') dnl
 define(`LPAIF_INTF_TYPE_RXTX_WSA', `9') dnl
 define(`LPAIF_INTF_TYPE_QAIF_AUD', `10') dnl
+define(`LPAIF_INTF_TYPE_QAIF', `10') dnl
+define(`LPAIF_INTF_TYPE_QAIF_VA', `11') dnl
 define(`I2S_INTF_TYPE_PRIMARY', `0') dnl
 define(`I2S_INTF_TYPE_SECONDARY', `1') dnl
 define(`I2S_INTF_TYPE_TERTIARY', `2') dnl
@@ -76,6 +78,41 @@ define(`SD_LINE_IDX_I2S_QUAD01', `5') dnl
 define(`SD_LINE_IDX_I2S_QUAD23', `6') dnl
 define(`SD_LINE_IDX_I2S_6CHS', `7') dnl
 define(`SD_LINE_IDX_I2S_8CHS', `8') dnl
+dnl AUD_INTF (QAIF) interface index defines
+define(`AUD_INTF_IDX_0', `0') dnl
+define(`AUD_INTF_IDX_1', `1') dnl
+define(`AUD_INTF_IDX_2', `2') dnl
+define(`AUD_INTF_IDX_3', `3') dnl
+define(`AUD_INTF_IDX_4', `4') dnl
+dnl AUDIO_IF intf_mode values
+define(`AUDIO_IF_INTF_MODE_TDM', `0') dnl
+define(`AUDIO_IF_INTF_MODE_PCM', `1') dnl
+define(`AUDIO_IF_INTF_MODE_I2S', `2') dnl
+dnl AUDIO_IF sync source
+define(`AUDIO_IF_SYNC_SRC_EXTERNAL', `0') dnl
+define(`AUDIO_IF_SYNC_SRC_INTERNAL', `1') dnl
+dnl AUDIO_IF ctrl_data_out_enable
+define(`AUDIO_IF_CTRL_DATA_OE_DISABLE', `0') dnl
+define(`AUDIO_IF_CTRL_DATA_OE_ENABLE', `1') dnl
+dnl AUDIO_IF qaif_type
+define(`AUDIO_IF_TYPE_QAIF', `0') dnl
+dnl AUDIO_IF lane mask
+define(`AUDIO_IF_LANE_MASK_0', `0x1') dnl
+define(`AUDIO_IF_LANE_MASK_1', `0x2') dnl
+dnl AUDIO_IF frame sync mode
+define(`AUDIO_IF_FRAME_SYNC_MODE_SHORT_SYNC', `0') dnl
+define(`AUDIO_IF_FRAME_SYNC_MODE_ONE_SLOT_SYNC', `1') dnl
+define(`AUDIO_IF_FRAME_SYNC_MODE_LONG_SYNC', `2') dnl
+dnl AUDIO_IF bit clock type
+define(`AUDIO_IF_I_BIT_CLK_EN', `0') dnl
+define(`AUDIO_IF_E_BIT_CLK_EN', `1') dnl
+define(`AUDIO_IF_SKIP_BIT_CLK_EN', `2') dnl
+dnl AUDIO_IF internal bit clock polarity
+define(`AUDIO_IF_INT_CLK_NORMAL', `0') dnl
+define(`AUDIO_IF_INT_CLK_INVERT', `1') dnl
+dnl AUDIO_IF external bit clock polarity
+define(`AUDIO_IF_EXT_CLK_NORMAL', `0') dnl
+define(`AUDIO_IF_EXT_CLK_INVERT', `1') dnl
 define(`CODEC_INTF_IDX_RX0', `1') dnl
 define(`CODEC_INTF_IDX_TX0', `1') dnl
 define(`CODEC_INTF_IDX_RX1', `2') dnl
@@ -107,6 +144,8 @@ define(`MODULE_ID_PLACEHOLDER_ENCODER', `0x07001008') dnl
 define(`MODULE_ID_PLACEHOLDER_DECODER', `0x07001009') dnl
 define(`MODULE_ID_I2S_SINK', `0x0700100A') dnl
 define(`MODULE_ID_I2S_SOURCE', `0x0700100B') dnl
+define(`MODULE_ID_AUDIO_IF_SINK', `0x0700117C') dnl
+define(`MODULE_ID_AUDIO_IF_SOURCE', `0x0700117D') dnl
 define(`MODULE_ID_MFC', `0x07001015') dnl
 define(`MODULE_ID_VOL_CTRL', `0x0700101B') dnl
 define(`MODULE_ID_SMECNS_V2', `0x07001031') dnl
