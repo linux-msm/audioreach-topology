@@ -84,6 +84,10 @@ define(`AUD_INTF_IDX_1', `1') dnl
 define(`AUD_INTF_IDX_2', `2') dnl
 define(`AUD_INTF_IDX_3', `3') dnl
 define(`AUD_INTF_IDX_4', `4') dnl
+define(`AUD_INTF_IDX_5', `5') dnl
+define(`AUD_INTF_IDX_6', `6') dnl
+define(`AUD_INTF_IDX_7', `7') dnl
+define(`AUD_INTF_IDX_8', `8') dnl
 dnl AUDIO_IF intf_mode values
 define(`AUDIO_IF_INTF_MODE_TDM', `0') dnl
 define(`AUDIO_IF_INTF_MODE_PCM', `1') dnl

@@ -1,4 +1,4 @@
-dnl Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+dnl Copyright, Linaro Ltd, 2024
 dnl SPDX-License-Identifier: BSD-3-Clause
 include(`util/util.m4') dnl
 
