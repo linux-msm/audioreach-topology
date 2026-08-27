@@ -38,14 +38,15 @@ define(`DEVICE_SG_ADD',
 `include($1)') dnl
 
 dnl DEVICE_AUDIO_IF_SG_ADD(stream, name, stream-id,
-dnl   format, min-rate, max-rate, min-channels, max-channels,
-dnl   interface-type, interface-index, sd-line-idx, data-format,
-dnl   sg-iid-start, cont-iid-start, mod-iid-start, mixer-prefix,
-dnl   sync-src, ctrl-data-out-enable, slot-mask, nslots-per-frame,
-dnl   slot-width, intf-mode, frame-sync-mode,
-dnl   ctrl-invert-sync-pulse, ctrl-sync-data-delay,
-dnl   qaif-type, active-lane-mask, frame-sync-rate,
-dnl   bit-clk-type, inv-int-bit-clk, inv-ext-bit-clk)
+dnl     format, min-rate, max-rate, min-channels, max-channels,
+dnl     interface-type, interface-index, sd-line-idx, data-format,
+dnl     sg-iid-start, cont-iid-start, mod-iid-start, mixer-prefix,
+dnl     sync-src, ctrl-data-out-enable,
+dnl     slot-mask, nslots-per-frame, slot-width,
+dnl     intf-mode, frame-sync-mode,
+dnl     ctrl-invert-sync-pulse, ctrl-sync-data-delay,
+dnl     qaif-type, active-lane-mask, frame-sync-rate,
+dnl     bit-clk-type, inv-int-bit-clk, inv-ext-bit-clk)
 define(`DEVICE_AUDIO_IF_SG_ADD',
 `undefine(`DEVICE_NAME') dnl'
 `undefine(`DEVICE_DAI_ID') dnl'
@@ -56,6 +57,7 @@ define(`DEVICE_AUDIO_IF_SG_ADD',
 `undefine(`DEVICE_MAX_CHANNELS') dnl'
 `undefine(`DEVICE_INTF_TYPE') dnl'
 `undefine(`DEVICE_INTF_INDEX') dnl'
+`undefine(`DEVICE_SD_LINE_IDX') dnl'
 `undefine(`DEVICE_DATA_FORMAT') dnl'
 `undefine(`SG_IID_START') dnl'
 `undefine(`CONT_IID_START') dnl'
