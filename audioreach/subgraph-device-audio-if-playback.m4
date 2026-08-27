@@ -1,4 +1,4 @@
-dnl Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+dnl Copyright, Linaro Ltd, 2024
 dnl SPDX-License-Identifier: BSD-3-Clause
 include(`audioreach/audioreach.m4') dnl
 include(`util/pcm.m4') dnl
@@ -22,7 +22,12 @@ dnl |   Sub Graph                  |
 dnl | [LOG] -> [AUDIO_IF_SINK EP]  |
 dnl |______________________________|
 dnl
-
+dnl DEVICE_AUDIO_IF_SG_ADD parameters used:
+dnl   DEVICE_INTF_TYPE  = LPAIF_INTF_TYPE_AUD (5) - AUD/QAIF interface
+dnl   DEVICE_INTF_INDEX = AUD_INTF index (0=INTF0, 1=INTF1 for SECONDARY TDM)
+dnl   DEVICE_SD_LINE_IDX = not used by AUDIO_IF (no SD line), passed as 0
+dnl   DEVICE_DATA_FORMAT = DATA_FORMAT_FIXED_POINT
+dnl   DEVICE_AUDIO_IF_* = interface configuration supplied by the board topology
 
 undefine(`LOG_MODULE_IID') dnl
 undefine(`AUDIO_IF_MODULE_IID') dnl
@@ -46,7 +51,7 @@ define(`DEVICE_DIRECTION', APM_SUB_GRAPH_DIRECTION_TX) dnl'
 define(`CONT_SENARIO_ID', APM_SUB_GRAPH_SID_AUDIO_PLAYBACK) dnl'
 define(`CONT_CAP', `ifelse(LPASS_VER_COMPAT, 110000, APM_CONTAINER_TYPE_ID_GC, APM_CONTAINER_CAP_ID_EP)') dnl'
 define(`CONT_POSITION', APM_CONT_GRAPH_POS_STREAM)dnl'
-define(`DEVICE_DOMAIN_ID', APM_PROC_DOMAIN_ID_ADSP) dnl'
+define(`DEVICE_DOMAIN_ID', `ifdef(`AR_SELECTED_PROC_DOMAIN_ID', AR_SELECTED_PROC_DOMAIN_ID, APM_PROC_DOMAIN_ID_ADSP)') dnl'
 define(`CONT_STACK_SIZE', 8192) dnl'
 dnl
 dnl Module IID assignments:
