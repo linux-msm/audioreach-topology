@@ -38,6 +38,7 @@ set(TPLGS
 	"X1E80100-LENOVO-Thinkpad-T14s\;X1E80100-LENOVO-ThinkBook-16\;qcom/x1e80100/LENOVO/21NH\;"
 	"X1E80100-LENOVO-Thinkpad-T14s\;X1E80100-Romulus\;qcom/x1e80100\;"
 	"X1P42100-Microsoft-Surface-Pro-12in\;X1P42100-Microsoft-Surface-Pro-12in\;qcom/x1e80100\;"
+	"X1E80100-Microsoft-Surface-Pro-11\;X1E80100-Microsoft-Surface-Pro-11\;qcom/x1e80100\;"
 	"X1E80100-LENOVO-Yoga-Slim7x\;X1E80100-LENOVO-Yoga-Slim7x\;qcom/x1e80100/LENOVO/83ED\;"
 	"QCM6490-IDP\;QCM6490-IDP\;qcom/qcm6490\;"
 	"QCM6490-IDP\;QCS6490-RB3Gen2-Industrial-Mezz\;qcom/qcs6490\;"
