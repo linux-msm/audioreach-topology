@@ -44,6 +44,8 @@ set(TPLGS
 	"QCS6490-RB3Gen2\;QCS6490-RB3Gen2\;qcom/qcs6490\;"
 	"QCS6490-Thundercomm-RubikPi3\;QCS6490-Thundercomm-RubikPi3\;qcom/qcs6490/Thundercomm/RubikPi3\;"
 	"TALOS-EVK\;TALOS-EVK\;qcom/qcs615\;"
+	"shikra-cqs-evk\;shikra-cqs-evk\;qcom/shikra\;"
+	"shikra-iqs-evk\;shikra-iqs-evk\;qcom/shikra\;"
   )
 
 # The list of directories to skip when synchronizing to linux-firmware

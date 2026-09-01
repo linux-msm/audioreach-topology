@@ -1,0 +1,85 @@
+# Copyright, Linaro Ltd, 2024
+# SPDX-License-Identifier: BSD-3-Clause
+include(`util/util.m4') dnl
+include(`audioreach/tokens.m4') dnl
+include(`audioreach/audioreach.m4') dnl
+dnl Select MDSP for Shikra; subgraph templates use this override instead of the default ADSP domain.
+define(`AR_SELECTED_PROC_DOMAIN_ID', APM_PROC_DOMAIN_ID_MDSP) dnl
+include(`audioreach/stream-subgraph.m4') dnl
+include(`audioreach/device-subgraph.m4') dnl
+include(`util/mixer.m4') dnl
+include(`util/route.m4') dnl
+
+dnl ---------------------------------------------------------------------
+dnl Streams
+dnl ---------------------------------------------------------------------
+
+STREAM_SG_PCM_ADD(`audioreach/subgraph-stream-vol-playback.m4', 0,
+	`S16_LE', 48000, 48000, 2, 2,
+	0x00004001, 0x00004001, 0x00006001, `110000')
+
+STREAM_SG_PCM_ADD(`audioreach/subgraph-stream-capture.m4', 1,
+	`S16_LE', 48000, 48000, 1, 2,
+	0x00004002, 0x00004002, 0x00006010, `110000')
+
+STREAM_SG_PCM_ADD(`audioreach/subgraph-stream-capture.m4', 2,
+	`S16_LE', 48000, 48000, 1, 2,
+	0x00004003, 0x00004003, 0x00006020, `110000')
+
+dnl ---------------------------------------------------------------------
+dnl PRIMARY_MI2S_RX device
+dnl ---------------------------------------------------------------------
+
+DEVICE_AUDIO_IF_SG_ADD(`audioreach/subgraph-device-audio-if-playback.m4',
+	`Primary MI2S', PRIMARY_MI2S_RX,
+	`S16_LE', 48000, 48000, 2, 2,
+	LPAIF_INTF_TYPE_AUD, AUD_INTF_IDX_0, 0, DATA_FORMAT_FIXED_POINT,
+	0x00004006, 0x00004006, 0x00006060, `PRIMARY_MI2S_RX',
+	AUDIO_IF_SYNC_SRC_INTERNAL, AUDIO_IF_CTRL_DATA_OE_ENABLE,
+	0x03, 2, 16,
+	AUDIO_IF_INTF_MODE_I2S, AUDIO_IF_FRAME_SYNC_MODE_LONG_SYNC,
+	1, 1,
+	AUDIO_IF_TYPE_QAIF, AUDIO_IF_LANE_MASK_0, 48000,
+	AUDIO_IF_I_BIT_CLK_EN, AUDIO_IF_INT_CLK_INVERT,
+	AUDIO_IF_EXT_CLK_NORMAL)
+
+dnl ---------------------------------------------------------------------
+dnl VA_CODEC_DMA_TX_0 device (capture backend)
+dnl ---------------------------------------------------------------------
+
+DEVICE_SG_ADD(`audioreach/subgraph-device-codec-dma-capture.m4',
+	`VA_CODEC_DMA_TX_0', 110,
+	`S16_LE', 48000, 48000, 1, 2,
+	LPAIF_INTF_TYPE_QAIF_AUD, CODEC_INTF_IDX_TX0, 0, DATA_FORMAT_FIXED_POINT,
+	0x00004008, 0x00004008, 0x00006080, `MIXER_PREFIX')
+
+dnl ---------------------------------------------------------------------
+dnl PRIMARY_MI2S_TX device (headset record)
+dnl ---------------------------------------------------------------------
+
+DEVICE_AUDIO_IF_SG_ADD(`audioreach/subgraph-device-audio-if-capture.m4',
+	`Primary MI2S', PRIMARY_MI2S_TX,
+	`S16_LE', 48000, 48000, 1, 2,
+	LPAIF_INTF_TYPE_AUD, AUD_INTF_IDX_0, 0, DATA_FORMAT_FIXED_POINT,
+	0x00004009, 0x00004009, 0x00006090, `PRIMARY_MI2S_TX',
+	AUDIO_IF_SYNC_SRC_INTERNAL, AUDIO_IF_CTRL_DATA_OE_ENABLE,
+	0x03, 2, 16,
+	AUDIO_IF_INTF_MODE_I2S, AUDIO_IF_FRAME_SYNC_MODE_LONG_SYNC,
+	1, 1,
+	AUDIO_IF_TYPE_QAIF, AUDIO_IF_LANE_MASK_1, 48000,
+	AUDIO_IF_I_BIT_CLK_EN, AUDIO_IF_INT_CLK_INVERT,
+	AUDIO_IF_EXT_CLK_NORMAL)
+
+dnl ---------------------------------------------------------------------
+dnl Playback stream/device mixers and routes
+dnl ---------------------------------------------------------------------
+
+STREAM_DEVICE_PLAYBACK_MIXER(16, ``PRIMARY_MI2S_RX'', ``MultiMedia1'')
+
+STREAM_DEVICE_PLAYBACK_ROUTE(16, ``PRIMARY_MI2S_RX Audio Mixer'', ``MultiMedia1, stream0.logger1'')
+
+STREAM_DEVICE_CAPTURE_MIXER(1, ``VA_CODEC_DMA_TX_0'')
+STREAM_DEVICE_CAPTURE_MIXER(2, ``PRIMARY_MI2S_TX'')
+
+STREAM_DEVICE_CAPTURE_ROUTE(1, ``MultiMedia2 Mixer'', ``VA_CODEC_DMA_TX_0, device110.logger1'')
+STREAM_DEVICE_CAPTURE_ROUTE(2, ``MultiMedia3 Mixer'', ``PRIMARY_MI2S_TX, device17.logger1'')
