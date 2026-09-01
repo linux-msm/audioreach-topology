@@ -28,6 +28,12 @@ STREAM_SG_PCM_ADD(audioreach/subgraph-stream-vol-playback.m4, FRONTEND_DAI_MULTI
 	`S16_LE', 48000, 48000, 2, 2,
 	0x00004003, 0x00004003, 0x00006020, `110000')
 
+dnl I2S on JHAT 
+STREAM_SG_PCM_ADD(audioreach/subgraph-stream-vol-playback.m4, FRONTEND_DAI_MULTIMEDIA6,
+	`S16_LE', 48000, 48000, 2, 2,
+	0x00004010, 0x00004010, 0x00006100, `110000')
+
+
 dnl Capture MultiMedia4  Headset Mic
 STREAM_SG_PCM_ADD(audioreach/subgraph-stream-capture.m4, FRONTEND_DAI_MULTIMEDIA4,
         `S16_LE', 48000, 48000, 1, 2,
@@ -76,22 +82,46 @@ DEVICE_SG_ADD(audioreach/subgraph-device-i2s-playback.m4, `LPI RX4', LPI_MI2S_RX
 	0x00004009, 0x00004009, 0x00006090, `LPI_MI2S_RX_4')
 
 
-STREAM_DEVICE_PLAYBACK_MIXER(LPI_MI2S_RX_0, ``LPI_MI2S_RX_0'', ``MultiMedia1'', ``MultiMedia2'', ``MultiMedia3'')
-STREAM_DEVICE_PLAYBACK_MIXER(LPI_MI2S_RX_4, ``LPI_MI2S_RX_4'', ``MultiMedia1'', ``MultiMedia2'', ``MultiMedia3'')
-STREAM_DEVICE_PLAYBACK_MIXER(DISPLAY_PORT_RX_0, ``DISPLAY_PORT_RX_0'', ``MultiMedia1'', ``MultiMedia2'', ``MultiMedia3'')
+dnl LPI MI2S1 using VA DMA 
+
+DEVICE_SG_ADD(audioreach/subgraph-device-i2s-capture.m4, `LPI TX1', LPI_MI2S_TX_1,
+        `S16_LE', 48000, 48000, 1, 2,
+	LPAIF_INTF_TYPE_VA, I2S_INTF_TYPE_PRIMARY, SD_LINE_IDX_I2S_SD0, DATA_FORMAT_FIXED_POINT,
+        0x00004012, 0x00004012, 0x00006120, `LPI_MI2S_TX_1', `LPI_MI2S_TX_1')
+
+DEVICE_SG_ADD(audioreach/subgraph-device-i2s-playback.m4, `LPI RX1', LPI_MI2S_RX_1,
+	`S16_LE', 48000, 48000, 2, 2,
+	LPAIF_INTF_TYPE_VA, I2S_INTF_TYPE_PRIMARY, SD_LINE_IDX_I2S_SD1, DATA_FORMAT_FIXED_POINT,
+	0x00004013, 0x00004013, 0x00006130, `LPI_MI2S_RX_1')
+
+
+STREAM_DEVICE_PLAYBACK_MIXER(LPI_MI2S_RX_0, ``LPI_MI2S_RX_0'', ``MultiMedia1'', ``MultiMedia2'', ``MultiMedia3'', ``MultiMedia6'')
+STREAM_DEVICE_PLAYBACK_MIXER(LPI_MI2S_RX_1, ``LPI_MI2S_RX_1'', ``MultiMedia1'', ``MultiMedia2'', ``MultiMedia3'', ``MultiMedia6'')
+STREAM_DEVICE_PLAYBACK_MIXER(LPI_MI2S_RX_4, ``LPI_MI2S_RX_4'', ``MultiMedia1'', ``MultiMedia2'', ``MultiMedia3'', ``MultiMedia6'')
+STREAM_DEVICE_PLAYBACK_MIXER(DISPLAY_PORT_RX_0, ``DISPLAY_PORT_RX_0'', ``MultiMedia1'', ``MultiMedia2'', ``MultiMedia3'', ``MultiMedia6'')
 
 STREAM_DEVICE_PLAYBACK_ROUTE(LPI_MI2S_RX_0, ``LPI_MI2S_RX_0 Audio Mixer'',
- ``MultiMedia1, stream0.logger1'', ``MultiMedia2, stream1.logger1'', ``MultiMedia3, stream2.logger1'')
+ ``MultiMedia1, stream0.logger1'', ``MultiMedia2, stream1.logger1'', ``MultiMedia3, stream2.logger1'', ``MultiMedia6, stream5.logger1'')
+
+STREAM_DEVICE_PLAYBACK_ROUTE(LPI_MI2S_RX_1, ``LPI_MI2S_RX_1 Audio Mixer'',
+ ``MultiMedia1, stream0.logger1'', ``MultiMedia2, stream1.logger1'', ``MultiMedia3, stream2.logger1'', ``MultiMedia6, stream5.logger1'')
+
 
 STREAM_DEVICE_PLAYBACK_ROUTE(LPI_MI2S_RX_4, ``LPI_MI2S_RX_4 Audio Mixer'',
- ``MultiMedia1, stream0.logger1'', ``MultiMedia2, stream1.logger1'', ``MultiMedia3, stream2.logger1'')
+ ``MultiMedia1, stream0.logger1'', ``MultiMedia2, stream1.logger1'', ``MultiMedia3, stream2.logger1'', ``MultiMedia6, stream5.logger1'')
 
 STREAM_DEVICE_PLAYBACK_ROUTE(DISPLAY_PORT_RX_0, ``DISPLAY_PORT_RX_0 Audio Mixer'',
- ``MultiMedia1, stream0.logger1'', ``MultiMedia2, stream1.logger1'', ``MultiMedia3, stream2.logger1'')
+ ``MultiMedia1, stream0.logger1'', ``MultiMedia2, stream1.logger1'', ``MultiMedia3, stream2.logger1'', ``MultiMedia6, stream5.logger1'')
 
 dnl STREAM_DEVICE_CAPTURE_MIXER(stream-index, kcontro1, kcontrol2... kcontrolN)
 STREAM_DEVICE_CAPTURE_MIXER(FRONTEND_DAI_MULTIMEDIA4, ``LPI_MI2S_TX_0'')
 STREAM_DEVICE_CAPTURE_MIXER(FRONTEND_DAI_MULTIMEDIA5, ``LPI_MI2S_TX_0'')
+
+STREAM_DEVICE_CAPTURE_MIXER(FRONTEND_DAI_MULTIMEDIA4, ``LPI_MI2S_TX_1'')
+STREAM_DEVICE_CAPTURE_MIXER(FRONTEND_DAI_MULTIMEDIA5, ``LPI_MI2S_TX_1'')
 dnl STREAM_DEVICE_CAPTURE_ROUTE(stream-index, mixer-name, route1, route2.. routeN)
 STREAM_DEVICE_CAPTURE_ROUTE(FRONTEND_DAI_MULTIMEDIA4, ``MultiMedia4 Mixer'', ``LPI_MI2S_TX_0, device138.logger1'')
 STREAM_DEVICE_CAPTURE_ROUTE(FRONTEND_DAI_MULTIMEDIA5, ``MultiMedia5 Mixer'', ``LPI_MI2S_TX_0, device138.logger1'')
+
+STREAM_DEVICE_CAPTURE_ROUTE(FRONTEND_DAI_MULTIMEDIA4, ``MultiMedia4 Mixer'', ``LPI_MI2S_TX_1, device140.logger1'')
+STREAM_DEVICE_CAPTURE_ROUTE(FRONTEND_DAI_MULTIMEDIA5, ``MultiMedia5 Mixer'', ``LPI_MI2S_TX_1, device140.logger1'')
