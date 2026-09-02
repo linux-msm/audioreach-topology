@@ -19,7 +19,8 @@ set(TPLGS
 	"SM8550-HDK\;SM8650-HDK\;qcom/sm8650\;"
 	"SM8550-HDK\;SM8750-MTP\;qcom/sm8750\;"
 	"SM8550-HDK\;SM8750-QRD\;qcom/sm8750\;"
-	"SC8280XP-LENOVO-X13S\;audioreach\;qcom/sc8280xp/LENOVO/21BX\;"
+	"SC8280XP-LENOVO-X13S\;SC8280XP-LENOVO-X13S\;qcom/sc8280xp/LENOVO/21BX\;"
+	"SC8280XP-MICROSOFT-BLACKROCK\;SC8280XP-MICROSOFT-BLACKROCK\;qcom/sc8280xp/microsoft/blackrock\;"
 	"Google-SC7180-WSA-Speakers-SEC-I2S-VA-DMIC-WCD-TX3\;Google-SC7180-WSA-Speakers-SEC-I2S-VA-DMIC-WCD-TX3\;qcom/sc7180\;"
 	"X1E80100-CRD\;X1E80100-CRD\;qcom/x1e80100\;"
 	"X1E80100-CRD\;X1E80100-EVK\;qcom/x1e80100\;"
@@ -54,6 +55,7 @@ set(SKIPSYNC
 	"qcom/sc7180"
 	"qcom/sm8250"
 	# Not yet in linux-firmware
+	"qcom/sc8280xp/microsoft/blackrock"
 	"qcom/x1e80100/LENOVO/21NH"
 )
 
