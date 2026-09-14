@@ -22,6 +22,7 @@ set(TPLGS
 	"SC8280XP-LENOVO-X13S\;audioreach\;qcom/sc8280xp/LENOVO/21BX\;"
 	"SC8280XP-Radxa-Dragon-Q8B\;SC8280XP-Radxa-Dragon-Q8B\;qcom/sc8280xp/radxa/dragon-q8b\;"
 	"Google-SC7180-WSA-Speakers-SEC-I2S-VA-DMIC-WCD-TX3\;Google-SC7180-WSA-Speakers-SEC-I2S-VA-DMIC-WCD-TX3\;qcom/sc7180\;"
+	"X1E80100-ACER-SFA14-11\;X1E80100-ACER-SFA14-11\;qcom/x1e80100/ACER/SFA14-11\;"
 	"X1E80100-CRD\;X1E80100-CRD\;qcom/x1e80100\;"
 	"X1E80100-CRD\;X1E80100-EVK\;qcom/x1e80100\;"
 	"GLYMUR-CRD\;GLYMUR-CRD\;qcom/glymur\;"
@@ -55,6 +56,7 @@ set(SKIPSYNC
 	"qcom/sc7180"
 	"qcom/sm8250"
 	# Not yet in linux-firmware
+	"qcom/x1e80100/ACER/SFA14-11"
 	"qcom/x1e80100/LENOVO/21NH"
 )
 
