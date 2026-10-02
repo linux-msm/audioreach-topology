@@ -93,8 +93,25 @@ foreach(tplg ${TPLGS})
 		VERBATIM
 		USES_TERMINAL
 	)
+	add_custom_command(
+		OUTPUT  ${CMAKE_CURRENT_BINARY_DIR}/${outputdir}/${output}.html
+			${CMAKE_CURRENT_BINARY_DIR}/${outputdir}/${output}-high.svg
+			${CMAKE_CURRENT_BINARY_DIR}/${outputdir}/${output}-low.svg
+		COMMAND ${CMAKE_COMMAND} -E env python3
+			${CMAKE_CURRENT_SOURCE_DIR}/util/gen_topology_html.py
+			${CMAKE_CURRENT_BINARY_DIR}/${outputdir}/${output}.conf
+			${CMAKE_CURRENT_BINARY_DIR}/${outputdir}/${output}.html
+		DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/${outputdir}/${output}.conf
+			${CMAKE_CURRENT_SOURCE_DIR}/util/gen_topology_html.py
+		VERBATIM
+		USES_TERMINAL
+	)
 
-	add_custom_target(topology_${output} DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/${outputdir}/${output}-tplg.bin)
+	add_custom_target(topology_${output}
+		DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/${outputdir}/${output}-tplg.bin
+			${CMAKE_CURRENT_BINARY_DIR}/${outputdir}/${output}.html
+			${CMAKE_CURRENT_BINARY_DIR}/${outputdir}/${output}-high.svg
+			${CMAKE_CURRENT_BINARY_DIR}/${outputdir}/${output}-low.svg)
 	add_dependencies(topologies topology_${output})
 
 	if (NOT ${SYNCFW} OR NOT "${outputdir}" IN_LIST SKIPSYNC)
