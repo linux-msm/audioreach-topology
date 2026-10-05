@@ -4,7 +4,9 @@ cmake_minimum_required(VERSION 3.10)
 # Array of "input-file-name;output-file-name;"
 set(TPLGS
 	"arduino-monza\;arduino-monza\;qcom/qcs8300\;"
+	"HAWI-MTP\;HAWI-MTP\;qcom/hawi\;"
 	"LEMANS-EVK\;LEMANS-EVK\;qcom/sa8775p\;"
+	"MAILI-MTP\;MAILI-MTP\;qcom/maili\;"
 	"MONACO-EVK\;MONACO-EVK\;qcom/qcs8300\;"
 	"Qualcomm-RB5-WSA8815-Speakers-DMIC0\;Qualcomm-RB5-WSA8815-Speakers-DMIC0\;qcom/sm8250\;"
 	"Qualcomm-RB5-WSA8815-Speakers-DMIC0-compress\;Qualcomm-RB5-WSA8815-Speakers-DMIC0-compress\;qcom/sm8250\;"
