@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 # With inspiration from SoF
 cmake_minimum_required(VERSION 3.10)
+project(audioreach-topology NONE)
 # Array of "input-file-name;output-file-name;"
 set(TPLGS
 	"arduino-monza\;arduino-monza\;qcom/qcs8300\;"
