@@ -1,9 +1,11 @@
 # SPDX-License-Identifier: BSD-3-Clause
 # Lenovo ThinkPad T14s Gen 7 (Snapdragon X2 Elite / Mahua, Lenovo 22A7/22A8):
-# 2x WSA8845 speakers, 2x DMIC. Same configuration as the ASUS Zenbook A14
-# (UX3407NA); kept as a separate file so the two boards can diverge.
+# 2x WSA8845 speakers, 2x DMIC, plus two DisplayPort sinks (DP0, DP1).
 # Based on GLYMUR-CRD.m4
 # Copyright, Linaro Ltd, 2023
+#
+# On-board HDMI (DISPLAY_PORT_RX_2 via RTD2171A) is intentionally not wired
+# here yet.
 include(`audioreach/audioreach.m4')
 include(`audioreach/stream-subgraph.m4')
 include(`audioreach/device-subgraph.m4')
@@ -18,14 +20,22 @@ include(`audioreach/tokens.m4')
 # | [WR_SH] -> [PCM DEC] -> [PCM CONV] -> [LOG]  |- Kcontrol
 # |______________________________________________|
 #
-dnl Playback MultiMedia1
+dnl Playback MultiMedia1 - Speakers
 STREAM_SG_PCM_ADD(audioreach/subgraph-stream-vol-playback.m4, FRONTEND_DAI_MULTIMEDIA1,
 	`S16_LE', 48000, 48000, 2, 2,
 	0x00004001, 0x00004001, 0x00006001, `110000')
-dnl Capture MultiMedia2
+dnl Capture MultiMedia2 - DMIC
 STREAM_SG_PCM_ADD(audioreach/subgraph-stream-capture.m4, FRONTEND_DAI_MULTIMEDIA2,
 	`S16_LE', 48000, 48000, 1, 2,
 	0x00004003, 0x00004003, 0x00006020, `110000')
+dnl Playback MultiMedia3 - DP0
+STREAM_SG_PCM_ADD(audioreach/subgraph-stream-vol-playback.m4, FRONTEND_DAI_MULTIMEDIA3,
+	`S16_LE', 48000, 48000, 2, 2,
+	0x00004002, 0x00004002, 0x00006030, `110000')
+dnl Playback MultiMedia4 - DP1
+STREAM_SG_PCM_ADD(audioreach/subgraph-stream-vol-playback.m4, FRONTEND_DAI_MULTIMEDIA4,
+	`S16_LE', 48000, 48000, 2, 2,
+	0x00004004, 0x00004004, 0x00006040, `110000')
 #
 # Device SubGraph for WSA RX0 Backend
 #
@@ -44,6 +54,18 @@ DEVICE_SG_ADD(audioreach/subgraph-device-codec-dma-playback.m4, `WSA_CODEC_DMA_R
 	LPAIF_INTF_TYPE_WSA, CODEC_INTF_IDX_RX0, 0, DATA_FORMAT_FIXED_POINT,
 	0x00004005, 0x00004005, 0x00006050)
 dnl
+dnl Display port0 Playback
+DEVICE_SG_ADD(audioreach/subgraph-device-display-port-playback.m4, `DISPLAY_PORT_RX_0', DISPLAY_PORT_RX_0,
+	`S16_LE', 48000, 48000, 2, 2,
+	LPAIF_INTF_TYPE_LPAIF, 0, 0, DATA_FORMAT_FIXED_POINT,
+	0x00004006, 0x00004006, 0x00006060, `DISPLAY_PORT_RX_0')
+dnl
+dnl Display port1 Playback
+DEVICE_SG_ADD(audioreach/subgraph-device-display-port-playback.m4, `DISPLAY_PORT_RX_1', DISPLAY_PORT_RX_1,
+	`S16_LE', 48000, 48000, 2, 2,
+	LPAIF_INTF_TYPE_LPAIF, 0, 0, DATA_FORMAT_FIXED_POINT,
+	0x00004007, 0x00004007, 0x00006070, `DISPLAY_PORT_RX_1')
+dnl
 
 dnl VA Capture
 DEVICE_SG_ADD(audioreach/subgraph-device-codec-dma-capture.m4, `VA_CODEC_DMA_TX_0', VA_CODEC_DMA_TX_0,
@@ -52,9 +74,13 @@ DEVICE_SG_ADD(audioreach/subgraph-device-codec-dma-capture.m4, `VA_CODEC_DMA_TX_
 	0x00004018, 0x00004018, 0x00006180)
 dnl
 
-STREAM_DEVICE_PLAYBACK_MIXER(WSA_CODEC_DMA_RX_0, ``WSA_CODEC_DMA_RX_0'', ``MultiMedia1'')
+STREAM_DEVICE_PLAYBACK_MIXER(WSA_CODEC_DMA_RX_0, ``WSA_CODEC_DMA_RX_0'', ``MultiMedia1'', ``MultiMedia3'', ``MultiMedia4'' )
+STREAM_DEVICE_PLAYBACK_MIXER(DISPLAY_PORT_RX_0, ``DISPLAY_PORT_RX_0'', ``MultiMedia1'', ``MultiMedia3'', ``MultiMedia4'' )
+STREAM_DEVICE_PLAYBACK_MIXER(DISPLAY_PORT_RX_1, ``DISPLAY_PORT_RX_1'', ``MultiMedia1'', ``MultiMedia3'', ``MultiMedia4'' )
 
-STREAM_DEVICE_PLAYBACK_ROUTE(WSA_CODEC_DMA_RX_0, ``WSA_CODEC_DMA_RX_0 Audio Mixer'', ``MultiMedia1, stream0.logger1'')
+STREAM_DEVICE_PLAYBACK_ROUTE(WSA_CODEC_DMA_RX_0, ``WSA_CODEC_DMA_RX_0 Audio Mixer'', ``MultiMedia1, stream0.logger1'', ``MultiMedia3, stream2.logger1'', ``MultiMedia4, stream3.logger1'')
+STREAM_DEVICE_PLAYBACK_ROUTE(DISPLAY_PORT_RX_0, ``DISPLAY_PORT_RX_0 Audio Mixer'', ``MultiMedia1, stream0.logger1'', ``MultiMedia3, stream2.logger1'', ``MultiMedia4, stream3.logger1'')
+STREAM_DEVICE_PLAYBACK_ROUTE(DISPLAY_PORT_RX_1, ``DISPLAY_PORT_RX_1 Audio Mixer'', ``MultiMedia1, stream0.logger1'', ``MultiMedia3, stream2.logger1'', ``MultiMedia4, stream3.logger1'')
 
 dnl STREAM_DEVICE_CAPTURE_MIXER(stream-index, kcontrol1, kcontrol2... kcontrolN)
 STREAM_DEVICE_CAPTURE_MIXER(FRONTEND_DAI_MULTIMEDIA2, ``VA_CODEC_DMA_TX_0'')
