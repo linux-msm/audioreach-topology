@@ -6,6 +6,7 @@ project(audioreach-topology NONE)
 set(TPLGS
 	"arduino-monza\;arduino-monza\;qcom/qcs8300\;"
 	"HAWI-MTP\;HAWI-MTP\;qcom/hawi\;"
+	"LEMANS-AXON-PRO\;LEMANS-AXON-PRO\;qcom/sa8775p\;"
 	"LEMANS-EVK\;LEMANS-EVK\;qcom/sa8775p\;"
 	"MAILI-MTP\;MAILI-MTP\;qcom/maili\;"
 	"MONACO-EVK\;MONACO-EVK\;qcom/qcs8300\;"
