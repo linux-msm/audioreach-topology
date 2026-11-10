@@ -60,6 +60,7 @@ set(TPLGS
 	"TALOS-EVK\;TALOS-EVK\;qcom/qcs615\;"
 	"shikra-cqs-evk\;shikra-cqs-evk\;qcom/shikra\;"
 	"shikra-iqs-evk\;shikra-iqs-evk\;qcom/shikra\;"
+	"shikra-iqs-lt9611uxd-evk\;shikra-iqs-lt9611uxd-evk\;qcom/shikra\;"
   )
 
 # The list of directories to skip when synchronizing to linux-firmware
