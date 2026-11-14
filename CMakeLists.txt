@@ -41,6 +41,7 @@ set(TPLGS
 	"X1E80100-Dell-Latitude-7455\;X1E80100-Dell-Latitude-7455\;qcom/x1e80100/dell/latitude-7455\;"
 	"X1E80100-Dell-XPS-13-9345\;X1E80100-Dell-XPS-13-9345\;qcom/x1e80100/dell/xps13-9345\;"
 	"X1E80100-LENOVO-IdeaCentre-Mini\;X1E80100-LENOVO-IdeaCentre-Mini\;qcom/x1e80100/LENOVO/91B6\;"
+	"X1E80100-LENOVO-Ideapad-3\;X1E80100-LENOVO-Ideapad-3\;qcom/x1e80100/LENOVO/83N3\;"
 	"X1E80100-LENOVO-Thinkpad-T14s\;X1E80100-ACER-SWIFT-14\;qcom/x1e80100\;"
 	"X1E80100-LENOVO-Thinkpad-T14s\;X1E80100-ASUS-Vivobook-S15\;qcom/x1e80100/ASUSTeK/vivobook-s15\;"
 	"X1E80100-LENOVO-Thinkpad-T14s\;X1E80100-ASUS-Vivobook-16\;qcom/x1e80100/ASUSTeK/vivobook-16\;"
@@ -69,6 +70,7 @@ set(SKIPSYNC
 	"qcom/sm8250"
 	# Not yet in linux-firmware
 	"qcom/x1e80100/LENOVO/21NH"
+	"qcom/x1e80100/LENOVO/83N3"
 )
 
 add_custom_target(topologies ALL)
