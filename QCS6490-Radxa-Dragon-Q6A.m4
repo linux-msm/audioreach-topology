@@ -16,7 +16,7 @@ include(`audioreach/tokens.m4')
 #
 dnl Playback MultiMedia1
 STREAM_SG_PCM_ADD(audioreach/subgraph-stream-vol-playback.m4, FRONTEND_DAI_MULTIMEDIA1,
-	`S16_LE', 48000, 48000, 2, 2,
+	`S16_LE', 8000, 192000, 2, 2,
 	0x00004001, 0x00004001, 0x00006001, `110000')
 dnl Playback MultiMedia2
 STREAM_SG_PCM_ADD(audioreach/subgraph-stream-vol-playback.m4, FRONTEND_DAI_MULTIMEDIA2,
