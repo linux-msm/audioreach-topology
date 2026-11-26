@@ -21,7 +21,7 @@ STREAM_SG_PCM_ADD(audioreach/subgraph-stream-vol-playback.m4, FRONTEND_DAI_MULTI
 dnl
 dnl Playback MultiMedia2
 STREAM_SG_PCM_ADD(audioreach/subgraph-stream-vol-playback.m4, FRONTEND_DAI_MULTIMEDIA2,
-	`S32_LE', 48000, 48000, 2, 2,
+	`S16_LE', 48000, 48000, 2, 2,
 	0x00004002, 0x00004002, 0x00006010, `110000')
 dnl
 dnl Playback MultiMedia4
@@ -70,7 +70,7 @@ DEVICE_SG_ADD(audioreach/subgraph-device-i2s-playback.m4, `Primary', PRIMARY_MI2
 dnl
 dnl Quaternary MI2S Playback
 DEVICE_SG_ADD(audioreach/subgraph-device-i2s-playback.m4, `Quaternary', QUATERNARY_MI2S_RX,
-	`S32_LE', 48000, 48000, 2, 2,
+	`S16_LE', 48000, 48000, 2, 2,
 	LPAIF_INTF_TYPE_RXTX, I2S_INTF_TYPE_PRIMARY, SD_LINE_IDX_I2S_SD0, DATA_FORMAT_FIXED_POINT,
 	0x00004006, 0x00004006, 0x00006060, `QUATERNARY_MI2S_RX')
 dnl
