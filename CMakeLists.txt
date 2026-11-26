@@ -9,6 +9,7 @@ set(TPLGS
 	"LEMANS-AXON-PRO\;LEMANS-AXON-PRO\;qcom/sa8775p\;"
 	"LEMANS-EVK\;LEMANS-EVK\;qcom/sa8775p\;"
 	"MAILI-MTP\;MAILI-MTP\;qcom/maili\;"
+	"Motorola-Vantage\;Motorola-Vantage\;qcom/molokai\;"
 	"MONACO-EVK\;MONACO-EVK\;qcom/qcs8300\;"
 	"NORD-RIDE\;NORD-RIDE\;qcom/nord\;"
 	"NORD-RRD\;NORD-RRD\;qcom/nord\;"
